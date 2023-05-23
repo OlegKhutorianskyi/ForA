@@ -9,11 +9,11 @@ import AnimatedPage from "../AnimatedPage";
 const ProductDescriptionPage = () => {
   const { id } = useParams();
 
-  const {list} = useSelector(state => state.products);
-  const product = list.find(item => item.id === +id);
+  const { list } = useSelector((state) => state.products);
+  const product = list.find((item) => item.id === +id);
 
   const dispatch = useDispatch();
-  
+
   const render = () => {
     if (product === undefined) {
       return (
@@ -37,7 +37,10 @@ const ProductDescriptionPage = () => {
               <div className={s.priceInfo}>
                 {discont_price ? (
                   <>
-                    <p className={s.discount}>{discont_price}<span>$</span></p>
+                    <p className={s.discount}>
+                      {discont_price}
+                      <span>$</span>
+                    </p>
                     <p className={s.price}>{price}$</p>
                     <p className={s.precent}>
                       -{((price / discont_price - 1) * 100).toFixed(0)}%
@@ -49,7 +52,12 @@ const ProductDescriptionPage = () => {
                   </>
                 )}
               </div>
-              <button className={s.toCartBtn} onClick={() => dispatch(add(+id))}>To cart</button>
+              <button
+                className={s.toCartBtn}
+                onClick={() => dispatch(add(+id))}
+              >
+                To cart
+              </button>
               <div className={s.productDescription}>
                 <h4>Description</h4>
                 <p className={s.description}>{description}</p>
@@ -61,12 +69,7 @@ const ProductDescriptionPage = () => {
     }
   };
 
-  return (
-    <AnimatedPage>
-      {render()}
-    </AnimatedPage>
-  )
-  
+  return <AnimatedPage>{render()}</AnimatedPage>;
 };
 
 export default ProductDescriptionPage;
